@@ -15,14 +15,14 @@ node {
       } 
     }
    stage('Sonarqube analysis'){
-    withSonarQubeEnv(credentialsId: 'sonar-jaquar') {
-        withMaven(jdk: 'JDK-1.8', maven: 'Maven-3.6.1') {
+      withMaven(jdk: 'JDK-1.8', maven: 'Maven-3.6.1') {
           sh 'mvn sonar:sonar \
-          -Dsonar.projectKey=maven-example-jaquar'
-         
-           
-       }
-    }
+          -Dsonar.projectKey=maven-example-jaquar \
+          -Dsonar.organization=itrainjaquar \
+          -Dsonar.host.url=https://sonarcloud.io \
+          -Dsonar.login=059cb525c6367049212917d911e5f503300e980e
+    
+      }
   }
   stage("Quality Gate"){
           
